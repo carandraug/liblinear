@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.0)
+# Require 3.18 because we use BLAS::BLAS target.
+cmake_minimum_required(VERSION 3.18)
 
 project(liblinear)
 
@@ -14,7 +15,7 @@ add_library(newton OBJECT newton.cpp)
 
 target_link_libraries(linear
   newton
-  ${BLAS_LIBRARIES})
+  BLAS::BLAS)
 
 # target_include_directories(linear PUBLIC
 #  $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
@@ -31,11 +32,11 @@ set_target_properties(newton PROPERTIES
 
 target_link_libraries(train
   linear
-  ${BLAS_LIBRARIES})
+  BLAS::BLAS)
 
 target_link_libraries(predict
   linear
-  ${BLAS_LIBRARIES})
+  BLAS::BLAS)
 
 install(TARGETS train predict
   DESTINATION bin)
