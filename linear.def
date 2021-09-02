@@ -1,4 +1,4 @@
-LIBRARY liblinear
+LIBRARY linear
 EXPORTS
 	train	@1
 	cross_validation	@2
